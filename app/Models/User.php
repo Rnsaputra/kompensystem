@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'nim',
+        'kelas',
+        'prodi',
     ];
 
     /**
@@ -32,7 +36,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
+    public function kompensasi()
+    {
+        return $this->hasOne(Kompensasi::class);
+    }
     /**
      * Get the attributes that should be cast.
      *

@@ -14,7 +14,7 @@
 
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'poppins', sans-serif;
         }
     </style>
 </head>
@@ -67,7 +67,7 @@
                         </div>
                         <input id="email" name="email" type="email" autocomplete="email" required
                             class="appearance-none block w-full pl-10 pr-3 py-2.5 border border-slate-300 rounded-xl shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition"
-                            placeholder="admin@polinema.ac.id">
+                            placeholder="admin@polines.ac.id">
                     </div>
                 </div>
 
@@ -106,9 +106,9 @@
         </div>
 
         <p class="mt-6 text-center text-xs text-slate-500">
-            &copy; {{ date('Y') }} Sistem Informasi Kompensasi.
+            &copy; {{ date('Y') }} Rnsaputra.
         </p>
-    </div>
+    </div>*-
 
 </body>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kompensasi;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -11,7 +12,31 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view ('pages.dashboard.index');
+        // 1. Total Mahasiswa (Yang kena kompen)
+        $total_mhs = Kompensasi::count();
+
+        // 2. Total Jam Kompen (Seluruh tanggungan)
+        $total_jam = Kompensasi::sum('total_kompensasi');
+
+        // 3. Mahasiswa Selesai (Status Lunas)
+        $mhs_selesai = Kompensasi::where('status', 'Lunas')->count();
+
+        // 4. Mahasiswa Belum Selesai (Aktif)
+        $mhs_aktif = Kompensasi::where('status', 'Belum Lunas')->count();
+
+        // 5. Data Terbaru (5 item terakhir untuk list mini)
+        $recents = Kompensasi::with('mahasiswa')
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('pages.dashboard.index', compact(
+            'total_mhs',
+            'total_jam',
+            'mhs_selesai',
+            'mhs_aktif',
+            'recents'
+        ));
     }
 
     /**
