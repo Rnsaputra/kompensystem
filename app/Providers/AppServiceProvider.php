@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // --- TAMBAHKAN KODE INI ---
+        // Jika aplikasi diakses via Ngrok (atau HTTPS production), paksa HTTPS
+        if (config('app.env') !== 'local' || str_contains(request()->url(), 'ngrok-free.app')) {
+            URL::forceScheme('https');
+        }
+        // --------------------------
     }
 }
